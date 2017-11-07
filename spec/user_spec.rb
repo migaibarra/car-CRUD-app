@@ -11,5 +11,15 @@ describe User do
       user_example.first_name = ''
       expect(user_example).to_not be_valid
     end
+
+    it 'is not valid without a last_name' do
+      user_example.last_name = ''
+      expect(user_example).to_not be_valid
+    end
+
+    it 'is not valid without a username' do
+      user_example.username = ''
+      expect(user_example).to_not be_valid
+    end
   end
 end
