@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   validates :username, presence: true
 
   def add_car(car)
-    return "Your garage is full! You cannot get any more cars" if self.cars > 5
+    return "Your garage is full! You cannot add any more cars." if self.cars.length >= 5
     self.cars << car
   end
 end
