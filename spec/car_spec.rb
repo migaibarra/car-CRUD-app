@@ -46,4 +46,11 @@ describe Car do
     end
   end
 
+  describe "Associations" do
+    it 'can be associated with a user' do
+      user_example.save
+      user_example.cars << car_example
+      expect(car_example.user_id).to eq user_example.id
+    end
+  end
 end
