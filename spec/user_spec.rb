@@ -63,5 +63,10 @@ describe User do
       10.times { user_example.add_car(car_example) }
       expect(user_example.cars.length).to eq 5
     end
+
+    it 'returns a message if more than 5 cars are attempted to be added' do
+      5.times { user_example.add_car(car_example) }
+      expect(user_example.add_car(car_example)).to eq "Your garage is full! You cannot add any more cars."
+    end
   end
 end
