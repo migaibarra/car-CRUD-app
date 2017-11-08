@@ -1,0 +1,38 @@
+<div class="container">
+  <% if @errors %>
+    <ul>
+      <% @errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <form class="new-car-form" action="/users/<%= @user.id %>/cars" method="post">
+    <div>
+      <label>Car Make: </label>
+      <input type="text" name="car[make]" placeholder="Honda">
+    </div>
+    <div>
+      <label>Car Model: </label>
+      <input type="text" name="car[car_model]" placeholder="Civic">
+    </div>
+    <div>
+      <label>Engine: </label>
+      <input type="text" name="car[engine]" placeholder="2.0-liter DOHC i-VTEC">
+    </div>
+    <div>
+      <label>Transmission: </label>
+      <input type="text" name="car[transmission]" placeholder="Continuous Variable Transmission">
+    </div>
+    <div>
+      <label>Horsepower: </label>
+      <input type="number" name="car[horsepower]" placeholder="157"> hp
+    </div>
+    <div>
+      <label>Top Speed: </label>
+      <input type="number" name="car[top_speed]" placeholder="130"> mph
+    </div>
+    <div>
+      <input type="submit" value="Add to Garage!">
+    </div>
+  </form>
+</div>
