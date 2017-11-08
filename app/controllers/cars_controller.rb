@@ -21,3 +21,8 @@ post '/users/:user_id/cars' do
     erb :'/cars/new'
   end
 end
+
+get '/users/:user_id/cars/:id' do
+  @car = Car.find(params[:id])
+  erb :'/cars/show'
+end

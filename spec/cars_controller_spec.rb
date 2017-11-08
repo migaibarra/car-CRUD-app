@@ -56,4 +56,11 @@ describe "Cars Controller" do
       expect(last_response.body).to include "Car model can't be blank"
     end
   end
+
+  it 'gets the car show page' do
+    car_example = Car.create(car_data)
+    user_example.cars << car_example
+    get "/users/#{user_example.id}/cars/#{car_example.id}"
+    expect(last_response.status).to eq 200
+  end
 end
