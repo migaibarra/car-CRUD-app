@@ -6,7 +6,7 @@
       <% end %>
     </ul>
   <% end %>
-  <form class="edit-user-form" action="/users" method="post">
+  <form class="edit-user-form" action="/users/<%= @user.id %>" method="post">
     <input type="hidden" name="_method" value="put">
     <div>
       <label>First Name: </label>
