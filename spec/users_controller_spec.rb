@@ -32,4 +32,18 @@ describe "Users Controller" do
       expect { post '/users', user: user_example }.to change{ User.all.count }.by 1
     end
   end
+
+  context "user does not correctly fill in the form" do
+    it "renders the form page" do
+      user_example[:username] = ''
+      post '/users', user: user_example
+      expect(last_response.status).to eq 200
+    end
+
+    it "displays errors on the form" do
+      user_example[:username] = ''
+      post '/users', user: user_example
+      expect(last_response.body).to include("Username can't be blank")
+    end
+  end
 end
