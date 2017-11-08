@@ -47,9 +47,27 @@ describe "Users Controller" do
     end
   end
 
+  it 'gets the user show page' do
+    saved_user_example = User.create(first_name: user_example[:first_name], last_name: user_example[:last_name], username: user_example[:username])
+    get "/users/#{saved_user_example.id}"
+    expect(last_response.status).to eq 200
+  end
+
   it 'gets the user edit page' do
-    saved_user_example = User.create!(first_name: user_example[:first_name], last_name: user_example[:last_name], username: user_example[:username])
+    saved_user_example = User.create(first_name: user_example[:first_name], last_name: user_example[:last_name], username: user_example[:username])
     get "/users/#{saved_user_example.id}/edit"
     expect(last_response.status).to eq 200
+  end
+
+  it "can update a user's info" do
+    saved_user_example = User.create(first_name: user_example[:first_name], last_name: user_example[:last_name], username: user_example[:username])
+    put "/users/#{saved_user_example.id}", user: {username: 'something_else2017'}
+    expect(User.find(saved_user_example.id).username).to eq "something_else2017"
+  end
+
+  it "can delete a user" do
+    saved_user_example = User.create(first_name: user_example[:first_name], last_name: user_example[:last_name], username: user_example[:username])
+    delete "/users/#{saved_user_example.id}"
+    expect(User.all).to_not include saved_user_example
   end
 end

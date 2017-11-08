@@ -1,0 +1,11 @@
+<h1>Hello <%= @user.first_name %></h1>
+
+<h2>Welcome to your garage:</h2>
+
+<ul>
+  <% @user.cars.each do |car| %>
+    <li><a href="/users/<%= @user.id %>/cars/<%= car.id %>"><%= car.make %> <%= car.car_model %></a></li>
+  <% end %>
+</ul>
+
+<a href="/users/<%= @user.id %>/edit">Edit your profile info</a>

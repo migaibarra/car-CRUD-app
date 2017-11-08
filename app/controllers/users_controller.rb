@@ -22,13 +22,19 @@ post '/users' do
   end
 end
 
+get '/users/:id' do
+  @user = User.find(params[:id])
+  erb :'/users/show'
+end
+
 get '/users/:id/edit' do
   @user = User.find(params[:id])
   erb :'/users/edit'
 end
 
-put '/users' do
-  user = User.update(params[:user])
+put '/users/:id' do
+  user = User.find(params[:id])
+  user.update(params[:user])
   if user.save
     redirect '/users'
   else
