@@ -63,4 +63,11 @@ describe "Cars Controller" do
     get "/users/#{user_example.id}/cars/#{car_example.id}"
     expect(last_response.status).to eq 200
   end
+
+  it 'gets the car edit page' do
+    car_example = Car.create(car_data)
+    user_example.cars << car_example
+    get "/users/#{user_example.id}/cars/#{car_example.id}/edit"
+    expect(last_response.status).to eq 200
+  end
 end

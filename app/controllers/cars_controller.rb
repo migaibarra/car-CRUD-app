@@ -26,3 +26,9 @@ get '/users/:user_id/cars/:id' do
   @car = Car.find(params[:id])
   erb :'/cars/show'
 end
+
+get '/users/:user_id/cars/:id/edit' do
+  @user = User.find(params[:user_id])
+  @car = Car.find(params[:id])
+  erb :'/cars/edit'
+end
