@@ -22,7 +22,7 @@ post '/users' do
   end
 end
 
-get '/users/:id' do
+get '/users/:id/edit' do
   @user = User.find(params[:id])
   erb :'/users/edit'
 end
@@ -33,7 +33,7 @@ put '/users' do
     redirect '/users'
   else
     @errors = user.errors.full_messages
-    erb :'/users/new'
+    erb :"/users/#{user.id}"
   end
 end
 

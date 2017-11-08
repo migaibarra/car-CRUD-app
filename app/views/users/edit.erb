@@ -1,0 +1,27 @@
+<div class="container">
+  <% if @errors %>
+    <ul>
+      <% @error.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <form class="edit-user-form" action="/users" method="post">
+    <input type="hidden" name="_method" value="put">
+    <div>
+      <label>First Name: </label>
+      <input type="text" name="user[first_name]" value="<%= @user.first_name %>">
+    </div>
+    <div>
+      <label>Last Name: </label>
+      <input type="text" name="user[last_name]" value="<%= @user.last_name %>">
+    </div>
+    <div>
+      <label>Username: </label>
+      <input type="text" name="user[username]" value="<%= @user.username %>">
+    </div>
+    <div>
+      <input type="submit" value="Update">
+    </div>
+  </form>
+</div>
