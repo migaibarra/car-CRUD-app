@@ -2,16 +2,18 @@ require 'spec_helper'
 
 describe User do
   let(:user_example) { User.new(
-    first_name: 'Sarah',
-    last_name: 'Somebody',
-    username: 'muscle_girl89')
+      first_name: 'Sarah',
+      last_name: 'Somebody',
+      username: 'muscle_girl89'
+    )
   }
 
   let(:car_example) { Car.new(
-      make: "Honda",
-      car_model: "Civic",
-      horsepower: 187,
-      top_speed: 135)
+        make: "Honda",
+        car_model: "Civic",
+        horsepower: 187,
+        top_speed: 135
+      )
     }
 
   describe "Validations" do
@@ -28,6 +30,12 @@ describe User do
     it 'is not valid without a username' do
       user_example.username = ''
       expect(user_example).to_not be_valid
+    end
+
+    it 'is not valid if the username is not unique' do
+      user_example.save
+      user_duplicate = User.new(first_name: 'Susy', last_name: 'Sassy', username: 'muscle_girl89')
+      expect(user_duplicate).to_not be_valid
     end
 
     it 'is valid with a first_name, last_name, and username' do

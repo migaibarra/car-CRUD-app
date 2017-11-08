@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :username, presence: true
+  validates :username, presence: true, uniqueness: true
 
   def add_car(car)
     return "Your garage is full! You cannot add any more cars." if self.cars.length >= 5
