@@ -32,3 +32,14 @@ get '/users/:user_id/cars/:id/edit' do
   @car = Car.find(params[:id])
   erb :'/cars/edit'
 end
+
+put '/users/:user_id/cars/:id' do
+  car = Car.find(params[:id])
+  car.update(params[:car])
+  if car.save
+    redirect '/users/:user_id/cars/:id'
+  else
+    @errors = car.errors.full_messages
+    erb :'/cars/edit'
+  end
+end
