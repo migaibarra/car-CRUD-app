@@ -43,3 +43,9 @@ put '/users/:user_id/cars/:id' do
     erb :'/cars/edit'
   end
 end
+
+delete '/users/:user_id/cars/:id' do
+  car = Car.find(params[:id])
+  car.destroy
+  redirect '/users/:user_id/cars'
+end

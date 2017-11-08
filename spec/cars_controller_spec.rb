@@ -77,4 +77,11 @@ describe "Cars Controller" do
     put "/users/#{user_example.id}/cars/#{car_example.id}", car: { top_speed: 130 }
     expect(Car.find(car_example.id).top_speed).to eq 130
   end
+
+  it "deletes a user's car" do
+    car_example = Car.create(car_data)
+    user_example.cars << car_example
+    delete "/users/#{user_example.id}/cars/#{car_example.id}"
+    expect(Car.all).to_not include car_example
+  end
 end
