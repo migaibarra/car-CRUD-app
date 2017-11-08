@@ -15,7 +15,7 @@ post '/users/:user_id/cars' do
   @car = Car.new(params[:car])
   if @car.save
     @user.cars << @car
-    redirect :'/users/:user_id/cars'
+    redirect :"/users/#{@user.id}/cars"
   else
     @errors = @car.errors.full_messages
     erb :'/cars/new'
@@ -34,10 +34,11 @@ get '/users/:user_id/cars/:id/edit' do
 end
 
 put '/users/:user_id/cars/:id' do
-  car = Car.find(params[:id])
-  car.update(params[:car])
-  if car.save
-    redirect '/users/:user_id/cars/:id'
+  @user = User.find(params[:user_id])
+  @car = Car.find(params[:id])
+  @car.update(params[:car])
+  if @car.save
+    redirect "/users/#{@user.id}/cars/#{@car.id}"
   else
     @errors = car.errors.full_messages
     erb :'/cars/edit'
@@ -45,7 +46,8 @@ put '/users/:user_id/cars/:id' do
 end
 
 delete '/users/:user_id/cars/:id' do
+  user = User.find(params[:user_id])
   car = Car.find(params[:id])
   car.destroy
-  redirect '/users/:user_id/cars'
+  redirect "/users/#{user.id}/cars"
 end
