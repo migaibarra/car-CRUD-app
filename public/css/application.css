@@ -1,0 +1,8 @@
+.nav-area {
+  display: block;
+  position: relative;
+  margin: 0 0 0 0;
+  width: 100%;
+  background-color: lime;
+  overflow: hidden;
+}
