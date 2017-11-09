@@ -26,17 +26,17 @@ class User < ActiveRecord::Base
     self.password_hash = @password
   end
 
-  def find_user(identifier)
-    if identifer =~ /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+  def self.find_user(identifier)
+    if identifier =~ /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
       return User.find_by_email(identifier)
     else
       User.find_by_username(identifier)
     end
   end
 
-  def login(username_or_password, password)
-    user = find_user(username_or_password)
-    if @user.password == password
+  def self.login(username_or_password, password)
+    user = User.find_user(username_or_password)
+    if user.password == password
       session[:id] = user.id
     else
       nil

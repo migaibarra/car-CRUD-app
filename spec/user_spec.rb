@@ -66,28 +66,42 @@ describe User do
       expect(user_example.cars).to include car_example
     end
 
-    it 'can be associated with multiple cars' do
+    it 'can be associated with multiple cars as ActiveRecord Relation' do
       user_example.cars << car_example
       user_example.cars << car_example
       user_example.cars << car_example
-      expect(user_example.cars.length).to eq 3
+      expect(user_example.cars).to be_an ActiveRecord::Relation
     end
   end
 
-  describe "Methods" do
-    it 'has an .add_car method to add cars' do
-      user_example.add_car(car_example)
-      expect(user_example.cars).to include car_example
+  describe "User Specific Methods" do
+    context "checks the .add_car method" do
+      it 'has an .add_car associates a car to a user' do
+        user_example.add_car(car_example)
+        expect(user_example.cars).to include car_example
+      end
+
+      it 'cannot add more than 5 cars per user' do
+        10.times { user_example.add_car(car_example) }
+        expect(user_example.cars.length).to eq 5
+      end
+
+      it 'returns a message if more than 5 cars are attempted to be added' do
+        5.times { user_example.add_car(car_example) }
+        expect(user_example.add_car(car_example)).to eq "Your garage is full! You cannot add any more cars."
+      end
     end
 
-    it 'cannot add more than 5 cars per user' do
-      10.times { user_example.add_car(car_example) }
-      expect(user_example.cars.length).to eq 5
-    end
+    context "checks methods associated with BCrypt" do
+      it 'creates a unique password hash when the user is saved' do
+        user_example.save
+        expect(user_example.password_hash).to_not eq user_example[:password]
+      end
 
-    it 'returns a message if more than 5 cars are attempted to be added' do
-      5.times { user_example.add_car(car_example) }
-      expect(user_example.add_car(car_example)).to eq "Your garage is full! You cannot add any more cars."
+      it 'returns nil when the user is not properly authenticated' do
+        user_example.save
+        expect(User.login('muscle_girl89', 'n0tRight')).to be nil
+      end
     end
   end
 end
