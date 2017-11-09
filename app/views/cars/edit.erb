@@ -1,0 +1,38 @@
+<div class="container">
+  <% if @errors %>
+    <ul>
+      <% @errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <form class="new-car-form" action="/users/<%= @user.id %>/cars/<%= @car.id %>" method="post">
+    <div>
+      <label>Car Make: </label>
+      <input type="text" name="car[make]" value="<%= @car.make %>">
+    </div>
+    <div>
+      <label>Car Model: </label>
+      <input type="text" name="car[car_model]" value="<%= @car.car_model %>">
+    </div>
+    <div>
+      <label>Engine: </label>
+      <input type="text" name="car[engine]" value="<%= @car.engine %>">
+    </div>
+    <div>
+      <label>Transmission: </label>
+      <input type="text" name="car[transmission]" value="<%= @car.transmission %>">
+    </div>
+    <div>
+      <label>Horsepower: </label>
+      <input type="number" name="car[horsepower]" value="<%= @car.horsepower %>"> hp
+    </div>
+    <div>
+      <label>Top Speed: </label>
+      <input type="number" name="car[top_speed]" value="<%= @car.top_speed %>"> mph
+    </div>
+    <div>
+      <input type="submit" value="Edit Car Details">
+    </div>
+  </form>
+</div>
