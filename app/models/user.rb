@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   def self.login(username_or_password, password)
     user = User.find_user(username_or_password)
     if user.password == password
-      session[:id] = user.id
+      return user.id
     else
       nil
     end

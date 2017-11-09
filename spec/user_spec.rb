@@ -102,6 +102,11 @@ describe User do
         user_example.save
         expect(User.login('muscle_girl89', 'n0tRight')).to be nil
       end
+
+      it 'can login using either username or password' do
+        user_example.save
+        expect(User.login('muscle_girl89', 'thePassw0rd')).to eq User.login('sarahomebody@example.org', 'thePassw0rd')
+      end
     end
   end
 end
