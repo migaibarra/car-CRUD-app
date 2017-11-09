@@ -4,7 +4,9 @@ describe User do
   let(:user_example) { User.new(
       first_name: 'Sarah',
       last_name: 'Somebody',
-      username: 'muscle_girl89'
+      email: 'sarahomebody@example.org',
+      username: 'muscle_girl89',
+      password: 'thePassw0rd'
     )
   }
 
@@ -27,6 +29,17 @@ describe User do
       expect(user_example).to_not be_valid
     end
 
+    it 'is not valid without an email' do
+      user_example.email = ''
+      expect(user_example).to_not be_valid
+    end
+
+    it 'is not valid if the email is not unique' do
+      user_example.save
+      user_duplicate = User.new(first_name: 'Sarah', last_name: 'Homey', email: 'sarahomebody@example.org', username: 'speed_demon91', password: 's0methingElse')
+      expect(user_duplicate).to_not be_valid
+    end
+
     it 'is not valid without a username' do
       user_example.username = ''
       expect(user_example).to_not be_valid
@@ -34,11 +47,11 @@ describe User do
 
     it 'is not valid if the username is not unique' do
       user_example.save
-      user_duplicate = User.new(first_name: 'Susy', last_name: 'Sassy', username: 'muscle_girl89')
+      user_duplicate = User.new(first_name: 'Susy', last_name: 'Sassy', email: 'sassy_girl@example.com', username: 'muscle_girl89', password: 's0methingElse')
       expect(user_duplicate).to_not be_valid
     end
 
-    it 'is valid with a first_name, last_name, and username' do
+    it 'is valid with a first_name, last_name, email, username, and password' do
       expect(user_example).to be_valid
     end
   end

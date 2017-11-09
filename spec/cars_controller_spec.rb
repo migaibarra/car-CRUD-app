@@ -4,7 +4,9 @@ describe "Cars Controller" do
   let!(:user_example) {User.create(
       first_name: "Ace",
       last_name: "Flash",
-      username: "aFlash_of_lightning99"
+      email: "aFlash_of_lightning99@example.com",
+      username: "aFlash_of_lightning99",
+      password: "nothing2c"
     )
   }
 

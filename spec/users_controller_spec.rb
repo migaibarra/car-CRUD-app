@@ -4,7 +4,9 @@ describe "Users Controller" do
   let(:user_example) { {
       first_name: "Samuel",
       last_name: "Adams",
-      username: "drunken_goodness1792"
+      username: "drunken_goodness1792",
+      email: "sam_adams@example.com",
+      password: "drunkenSail0r"
   } }
 
   it 'redirects to the user page' do
@@ -48,19 +50,19 @@ describe "Users Controller" do
   end
 
   it 'gets the user show page' do
-    saved_user_example = User.create(first_name: user_example[:first_name], last_name: user_example[:last_name], username: user_example[:username])
+    saved_user_example = User.create(user_example)
     get "/users/#{saved_user_example.id}"
     expect(last_response.status).to eq 200
   end
 
   it 'gets the user edit page' do
-    saved_user_example = User.create(first_name: user_example[:first_name], last_name: user_example[:last_name], username: user_example[:username])
+    saved_user_example = User.create(user_example)
     get "/users/#{saved_user_example.id}/edit"
     expect(last_response.status).to eq 200
   end
 
   it "can update a user's info" do
-    saved_user_example = User.create(first_name: user_example[:first_name], last_name: user_example[:last_name], username: user_example[:username])
+    saved_user_example = User.create(user_example)
     put "/users/#{saved_user_example.id}", user: {username: 'something_else2017'}
     expect(User.find(saved_user_example.id).username).to eq "something_else2017"
   end
