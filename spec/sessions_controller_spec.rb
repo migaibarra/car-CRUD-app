@@ -31,6 +31,9 @@ describe "Session Creation and Login" do
       post '/sessions', { email: user_example.email, password: "DuckHater" }
       expect(last_response.status).to eq 200
     end
-
+    it 'renders errors on the login page' do
+      post '/sessions', { email: user_example.email, password: "DuckHater" }
+      expect(last_response.body).to include 'Oops, something went wrong!'
+    end
   end
 end
