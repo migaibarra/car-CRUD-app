@@ -36,4 +36,11 @@ describe "Session Creation and Login" do
       expect(last_response.body).to include 'Oops, something went wrong!'
     end
   end
+
+  it 'clears the session when the user logs out' do
+    post '/sessions', { email: user_example.email, password: "DukH8tr" }
+    expect(session[:user_id]).to eq user_example.id
+    delete "/sessions/#{session[:user_id]}"
+    expect(session[:user_id]).to be nil
+  end
 end

@@ -12,3 +12,8 @@ post '/sessions' do
     erb :'/sessions/new'
   end
 end
+
+delete '/sessions/:user_id' do
+  session.clear
+  redirect '/sessions/new'
+end
