@@ -92,7 +92,7 @@ describe User do
       end
     end
 
-    context "checks methods associated with BCrypt" do
+    context "Authentication and Authorization using BCrypt" do
       it 'creates a unique password hash when the user is saved' do
         user_example.save
         expect(user_example.password_hash).to_not eq user_example[:password]
@@ -100,12 +100,12 @@ describe User do
 
       it 'returns nil when the user is not properly authenticated' do
         user_example.save
-        expect(User.login('muscle_girl89', 'n0tRight')).to be nil
+        expect(User.login('sarahomebody@example.org', 'n0tRight')).to be nil
       end
 
-      it 'can login using either username or password' do
+      it 'returns the user id if authenticated correctly' do
         user_example.save
-        expect(User.login('muscle_girl89', 'thePassw0rd')).to eq User.login('sarahomebody@example.org', 'thePassw0rd')
+        expect(User.login('sarahomebody@example.org', 'thePassw0rd')).to eq user_example
       end
     end
   end
