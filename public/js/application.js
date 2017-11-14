@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
   $(".get-car-form").on('click', (e) => {
     e.preventDefault();
     const url = $(e.currentTarget).attr('href');
@@ -10,7 +11,19 @@ $(document).ready(function() {
 
     $(".car-form-container").on('submit', '.new-car-form', (e) => {
       e.preventDefault();
-      console.log("Hopefully this works!");
+
+      const $form = $(e.currentTarget)
+      const url = $form.attr("action");
+      const data = $form.serialize()
+
+      $.ajax({
+        method: "POST",
+        url,
+        data,
+      }).done((response) => {
+        console.log(response)
+      });
     });
+
   });
 });
