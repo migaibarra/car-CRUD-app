@@ -7,7 +7,11 @@ end
 get '/users/:user_id/cars/new' do
   @user = User.find(params[:user_id])
   @car = Car.new
-  erb :'/cars/new'
+  if request.xhr?
+    erb :'/cars/new', layout: false
+  else
+    erb :'/cars/new'
+  end
 end
 
 post '/users/:user_id/cars' do

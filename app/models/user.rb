@@ -1,7 +1,8 @@
-class User < ActiveRecord::Base
-  require 'bcrypt'
-  include BCrypt
+require 'bcrypt'
 
+class User < ActiveRecord::Base
+  include BCrypt
+  
   has_many :cars
 
   validates :first_name, presence: true
