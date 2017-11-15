@@ -17,22 +17,16 @@ end
 post '/users/:user_id/cars' do
   @user = User.find(params[:user_id])
   @car = Car.new(params[:car])
-  if request.xhr?
-    if @car.save
-      content_type 'application/json'
-      @user.cars << @car
-      @car.to_json
+  if @car.save
+    @user.add_car(@car)
+    if request.xhr?
       erb :'/cars/_car_item', locals: { car: @car, user: @user }, layout: false
-    # else # implementing errors laterz
+    else
+      redirect :"/users/#{@user.id}/cars"
     end
   else
-    if @car.save
-      @user.cars << @car
-      redirect :"/users/#{@user.id}/cars"
-    else
-      @errors = @car.errors.full_messages
-      erb :'/cars/new'
-    end
+    @errors = @car.errors.full_messages
+    erb :'/cars/new'
   end
 end
 
