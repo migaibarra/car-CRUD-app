@@ -6,7 +6,7 @@ $(document).ready(function() {
     $.ajax({
       url,
     }).done((response) => {
-      $(".car-form-container").html(response);
+      $(".car-form-container").append(response);
     });
 
     $(".car-form-container").on('submit', '.new-car-form', (e) => {
@@ -16,6 +16,7 @@ $(document).ready(function() {
       const url = $form.attr("action");
       const data = $form.serialize();
 
+      debugger;
       $.ajax({
         method: "POST",
         url,

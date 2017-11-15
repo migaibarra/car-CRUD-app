@@ -19,6 +19,7 @@ post '/users/:user_id/cars' do
   @car = Car.new(params[:car])
   if request.xhr?
     if @car.save
+      content_type 'application/json'
       @user.cars << @car
       @car.to_json
       erb :'/cars/_car_item', locals: { car: @car, user: @user }, layout: false
