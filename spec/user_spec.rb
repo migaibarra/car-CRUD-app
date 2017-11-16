@@ -100,12 +100,12 @@ describe User do
 
       it 'returns nil when the user is not properly authenticated' do
         user_example.save
-        expect(User.login('sarahomebody@example.org', 'n0tRight')).to be nil
+        expect(User.authenticate('sarahomebody@example.org', 'n0tRight')).to be nil
       end
 
       it 'returns the user id if authenticated correctly' do
         user_example.save
-        expect(User.login('sarahomebody@example.org', 'thePassw0rd')).to eq user_example
+        expect(User.authenticate('sarahomebody@example.org', 'thePassw0rd')).to eq user_example
       end
     end
   end

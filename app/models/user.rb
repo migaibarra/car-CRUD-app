@@ -2,7 +2,7 @@ require 'bcrypt'
 
 class User < ActiveRecord::Base
   include BCrypt
-  
+
   has_many :cars
 
   validates :first_name, presence: true
@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
     self.password_hash = @password
   end
 
-  def self.login(email, password)
+  def self.authenticate(email, password)
     user = User.find_by_email(email)
     if user.password == password
       return user

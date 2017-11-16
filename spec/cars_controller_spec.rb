@@ -10,6 +10,8 @@ describe "Cars Controller" do
     )
   }
 
+  # before(:each) { User.authenticate("aFlash_of_lightning99@example.com", "nothing2c") }
+
   let(:car_data) { {
       make: "Subaru",
       car_model: "WRX STI",
@@ -20,6 +22,7 @@ describe "Cars Controller" do
     } }
 
   it 'gets the cars index page for a particular user' do
+    User.authenticate("aFlash_of_lightning99@example.com", "nothing2c")
     get "/users/#{user_example.id}/cars"
     expect(last_response.status).to eq 200
   end
