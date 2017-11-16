@@ -21,7 +21,6 @@ $(document).ready(function() {
         url,
         data,
       }).done((response) => {
-        console.log(response);
         $(".car-form-container").empty();
         $(".get-car-form").show();
         $(".car-list").append(response);

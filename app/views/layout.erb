@@ -7,7 +7,7 @@
     See: http://necolas.github.com/normalize.css/
   -->
   <link rel="stylesheet" href="/css/normalize.css">
-  <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="/css/application.css">
   <!--
     application.css is where you put your styles
   -->
@@ -19,12 +19,22 @@
 </head>
 <body>
 <div class="nav-area">
-  <h1 id="site-title">Cool Car Garage</h1>
+  <img class="site-image" src="images/cool_car.png" />
+  <h1 class="site-title">Cool Car Garage</h1>
   <nav class="nav-bar">
     <ul>
+      <% if session[:user_id] == nil %>
+        <li class="nav-item"><a href="/users/new" class="nav-link">Register</a></li>
+        <li class="nav-item"><a href="/sessions/new">Login</a></li>
+      <% else %>
+        <li class="nav-item">
+          <form action="/sessions/<%= session[:user_id] %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input class="logout" type="submit" value="Logout">
+          </form>
+        </li>
+      <% end %>
       <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-      <li class="nav-item"><a href="/users/new" class="nav-link">Create a new user</a></li>
-      <li class="nav-item"><a href="/sessions/new">Login</a></li>
     </ul>
   </nav>
 </div>
