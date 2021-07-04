@@ -1,7 +1,30 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+  $(".get-car-form").on('click', (e) => {
+    e.preventDefault();
+    const url = $(e.currentTarget).attr('href');
+
+    $.ajax({ url }).done((response) => {
+        $(".car-form-container").append(response);
+        $(".get-car-form").hide();
+      });
+    });
+
+    $(".car-form-container").on('submit', '.new-car-form', (e) => {
+      e.preventDefault();
+      const $form = $(e.currentTarget);
+      const url = $form.attr("action");
+      const data = $form.serialize();
+
+      $.ajax({
+        method: "POST",
+        url,
+        data,
+      }).done((response) => {
+        $(".car-form-container").empty();
+        $(".get-car-form").show();
+        $(".car-list").append(response);
+      });
+    });
+
 });

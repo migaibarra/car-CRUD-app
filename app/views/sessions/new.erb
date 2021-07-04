@@ -1,0 +1,21 @@
+<div class="container">
+  <h2>Login to Access Your Garage</h2>
+
+  <% if @error %>
+    <p class="error"><%= @error %></p>
+  <% end %>
+  
+  <form class="login-form" action="/sessions" method="post">
+    <div>
+      <label>Email: </label>
+      <input type="text" name="email">
+    </div>
+    <div>
+      <label>Password: </label>
+      <input type="password" name="password">
+    </div>
+    <div>
+      <input type="submit" value="Login">
+    </div>
+  </form>
+</div>

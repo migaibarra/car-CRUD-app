@@ -11,6 +11,8 @@ gem 'activesupport', '~>4.2.0'
 gem 'activerecord', '~>4.2.0'
 
 gem 'rake'
+gem 'bcrypt'
+gem 'json'
 
 gem 'shotgun', '~>0.9.1'
 
@@ -19,6 +21,7 @@ group :test do
   gem 'rack-test'
   gem 'rspec', '~>3.0'
   gem 'capybara'
+  gem 'database_cleaner', '~> 1.4.1'
 end
 
 group :test, :development do

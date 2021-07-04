@@ -1,0 +1,7 @@
+<h1>All users with garages:</h1>
+
+<ul>
+  <% @users.each do |user| %>
+    <li><a href="/users/<%= user.id %>"><%= user.first_name %> <%= user.last_name %></a></li>
+  <% end %>
+</ul>

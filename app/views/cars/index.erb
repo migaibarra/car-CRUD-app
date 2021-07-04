@@ -1,0 +1,13 @@
+<h2><%= @user.first_name %>, these are the cars in your garage:</h2>
+<ul class="car-list">
+  <% @cars.each do |car| %>
+  <li><a href="/users/<%= @user.id %>/cars/<%= car.id %>"><%= car.make %> <%= car.car_model %></a></li>
+  <% end %>
+</ul>
+
+
+<a href="/users/<%= @user.id %>/cars/new" class="get-car-form">Add a car to your garage</a>
+
+<div class="car-form-container">
+
+</div>

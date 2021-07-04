@@ -1,23 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- 
+  <!--
     normalize.css removes cross-browser differences in defaults, e.g.,
     differences in how form elements appear between Firefox and IE
     See: http://necolas.github.com/normalize.css/
   -->
   <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/application.css">
   <!--
     application.css is where you put your styles
   -->
-  <link rel="stylesheet" href="/css/application.css">
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
 
-  <title></title>
+  <title>Cool Cars</title>
 </head>
 <body>
+<div class="nav-area">
+  <img class="site-image" src="/images/cool_car.png" />
+  <h1 class="site-title">Cool Car Garage</h1>
+  <nav class="nav-bar">
+    <ul>
+      <% if session[:user_id] == nil %>
+        <li class="nav-item"><a href="/users/new" class="nav-link">Register</a></li>
+        <li class="nav-item"><a href="/sessions/new">Login</a></li>
+      <% else %>
+        <li class="nav-item">
+          <form action="/sessions/<%= session[:user_id] %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input class="logout" type="submit" value="Logout">
+          </form>
+        </li>
+      <% end %>
+      <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+    </ul>
+  </nav>
+</div>
   <%= yield %>
 </body>
 </html>

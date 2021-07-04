@@ -1,0 +1,55 @@
+body {
+  font-family: Helvetica, sans-serif;
+}
+
+.logout {
+  background: none;
+  border: none;
+  color: orange;
+  padding: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  font: inherit;
+}
+
+.nav-area {
+  background-color: black;
+  display: block;
+  margin: 0 0 0 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.nav-item{
+  float: right;
+  height: 100px;
+  list-style-type: none;
+  margin-left: 10px;
+  margin-right: 10px;
+  position: relative;
+  top: 27px;
+}
+
+.nav-item a {
+  color: orange;
+  text-decoration: none;
+}
+
+.site-image{
+  float: left;
+  height: 100px;
+  margin-left: 10px;
+  position: relative;
+}
+
+.site-title{
+  color: orange;
+  display: inline-block;
+  font-size: 25px;
+  font-style: italic;
+  height: 100px;
+  margin: 0 0 0 20px;
+  position: absolute;
+  top: 35px;
+}

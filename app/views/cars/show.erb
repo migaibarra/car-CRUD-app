@@ -1,0 +1,36 @@
+<h1><%= @car.make %> <%= @car.car_model %></h1>
+<h2>Owned by <%= User.find(@car.user_id).username %></h2>
+
+<p>Car Details: </p>
+<table>
+  <tr>
+    <th>Make: </th>
+    <td><%= @car.make %></td>
+  </tr>
+  <tr>
+    <th>Model: </th>
+    <td><%= @car.car_model %></td>
+  </tr>
+  <tr>
+    <th>Engine: </th>
+    <td><%= @car.engine %></td>
+  </tr>
+  <tr>
+    <th>Transmission: </th>
+    <td><%= @car.transmission %></td>
+  </tr>
+  <tr>
+    <th>Horsepower: </th>
+    <td><%= @car.horsepower %></td>
+  </tr>
+  <tr>
+    <th>Top Speed: </th>
+    <td><%= @car.top_speed %></td>
+  </tr>
+</table>
+
+<a href="/users/<%= @car.user_id %>/cars/<%= @car.id %>/edit">Edit Information</a>
+<form class="delete-car" action="/users/<%= @car.user_id %>/cars/<%= @car.id %> " method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete">
+</form>
